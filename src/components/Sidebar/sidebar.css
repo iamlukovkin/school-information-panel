@@ -1,0 +1,33 @@
+aside {
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    background-color: #888888;
+    gap: 1em;
+    padding: 2em;
+}
+
+button {
+    width: 100%;
+    background: linear-gradient(to right,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0));
+    border-radius: 0.5rem;
+    color: var(--white);
+    text-align: left;
+    border-top: 0;
+    border-left: 1px;
+    padding: 0.5em 0.5em 0.5em 1em;
+    border-right: 0;
+    border-bottom: 0;
+    border-color: var(--orange);
+}
+
+button:hover {
+    transition-property: color, background;
+    transition-duration: 0.2s;
+    background: linear-gradient(to right,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0));
+    color: black;
+}

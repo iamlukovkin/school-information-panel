@@ -1,0 +1,43 @@
+header {
+  padding: 2em;
+  width: 100%;
+  background-size: 100%;
+  background-position: 20%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)),
+    url('./bg.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+}
+
+h1 {
+  font-size: 4em;
+}
+
+a,
+p {
+  font-size: 1.2em;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+nav a:hover {
+  transition-property: color;
+  color: var(--orange);
+  transition-duration: 0.2s;
+}
