@@ -10,8 +10,6 @@ export type AppPages = {
     system: Array<Page>,
 }
 
-
-
 function createRoute(page: Page) {
     const PageContent: FC = page.content;
     return (
@@ -32,6 +30,18 @@ export default function App() {
 
     const pages: AppPages = {
         thematical: [
+            {
+                link: "tubing",
+                title: "Осторожно, тюбинг!",
+                description: "",
+                content: () => {
+                    const images = import.meta.glob(
+                        './assets/images/Tubing/*.{png,jpg,jpeg,svg}', 
+                        {eager: true, as: 'url'}
+                    );
+                    return (<ImagesContainer images={images}/>)
+                }
+            },
             {
                 link: "aids_fight_day",
                 title: "Всемирный день борьбы со СПИДом",
