@@ -31,37 +31,13 @@ export default function App() {
     const pages: AppPages = {
         thematical: [
             {
-                link: "tubing",
-                title: "Осторожно, тюбинг!",
-                description: "",
-                content: () => {
-                    const images = import.meta.glob(
-                        './assets/images/Tubing/*.{png,jpg,jpeg,svg}', 
-                        {eager: true, as: 'url'}
-                    );
-                    return (<ImagesContainer images={images}/>)
-                }
-            },
-            {
-                link: "aids_fight_day",
-                title: "Всемирный день борьбы со СПИДом",
-                description: "",
-                content: () => {
-                    const images = import.meta.glob(
-                        './assets/images/AidsFightDay/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
-                    );
-                    return (<ImagesContainer images={images}/>);
-                }
-            },
-            {
                 link: "trains",
                 title: "Внимание: Железная дорога!",
                 description: "Будьте осторожны, переходя через железную дорогу",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/Trains/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<ImagesContainer images={images}/>);
                 }
@@ -71,9 +47,9 @@ export default function App() {
                 title: "Осторожно, мошенники!",
                 description: "Будьте бдительны и не дайте себя обмануть!",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/Scammers/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<>
                         <p>Мошенники используют множество поводов для обмана людей,
@@ -93,9 +69,9 @@ export default function App() {
                 title: "Безопасная дорога в школу и домой",
                 description: "",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/SafetyRoadToHome/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<ImagesContainer images={images}/>);
                 }
@@ -105,9 +81,9 @@ export default function App() {
                 title: 'Самокаты - правила вождения',
                 description: 'Основные правила поведения при вождении электросамокатов',
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/ScooterRules/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<ImagesContainer images={images}/>);
                 }
@@ -117,9 +93,9 @@ export default function App() {
                 title: "Антикоррупция",
                 description: "Антикоррупционый комитет Рязанской области",
                 content: () => {
-                    const images = Object.values(import.meta.glob(
+                    const images = Object.values(import.meta.glob<string>(
                         './assets/images/Corruption/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     ));
                     return (
                         <div>
@@ -143,9 +119,9 @@ export default function App() {
                 title: "Опасность БПЛА",
                 description: "Памятка населению о порядке действий населения при обнаружении беспилотных летательных аппаратов (БПЛА)",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/Drones/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<ImagesContainer images={images}/>);
                 },
@@ -155,9 +131,9 @@ export default function App() {
                 title: "QR-коды против экстремизма",
                 description: "Узнай об ответственности за экстремистскую деятельность в Российской Федерации",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/Extremism/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<ImagesContainer images={images}/>);
                 }
@@ -167,9 +143,9 @@ export default function App() {
                 title: "Телефон доверия",
                 description: "Бесплатная горячая линия",
                 content: () => {
-                    const images = import.meta.glob(
+                    const images = import.meta.glob<string>(
                         './assets/images/HelpPhones/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     );
                     return (<>
                         <h1 style={{color: "red"}}>Короткий номер с мобильных телефонов: 124</h1>
@@ -184,13 +160,13 @@ export default function App() {
                 title: "Уголок безопасности дорожного движения",
                 description: "Быть пешеходом — это очень ответственно, особенно важно правильно вести себя на дороге.",
                 content: () => {
-                    const mainImages = Object.values(import.meta.glob(
+                    const mainImages = Object.values(import.meta.glob<string>(
                         './assets/images/RoadRules/main/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     ));
-                    const otherImages = Object.values(import.meta.glob(
+                    const otherImages = Object.values(import.meta.glob<string>(
                         './assets/images/RoadRules/other/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     ));
                     return (
                         <>
@@ -209,9 +185,9 @@ export default function App() {
                 title: "Безопасный интернет",
                 description: "Правила поведения в виртуальном пространстве",
                 content: () => {
-                    const images = Object.values(import.meta.glob(
+                    const images = Object.values(import.meta.glob<string>(
                         './assets/images/SafetyNetwork/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     ));
                     return (
                         <div className={'images'}>
@@ -227,9 +203,9 @@ export default function App() {
                 title: null,
                 description: null,
                 content: () => {
-                    const images = Object.values(import.meta.glob(
+                    const images = Object.values(import.meta.glob<string>(
                         './assets/images/IndexPage/*.{png,jpg,jpeg,svg}',
-                        {eager: true, as: 'url'}
+                        {eager: true, query: '?url', import: 'default'}
                     ));
                     return (
                         <>
