@@ -25,21 +25,37 @@ function createRoute(page: Page) {
     );
 }
 
+const allImages = import.meta.glob<string>(
+    './assets/images/**/*.{png,jpg,jpeg,svg}',
+    { eager: true, query: '?url', import: 'default' }
+);
+
+function getImagesOfPath(targetPath: string) : Record<string, string> {
+    return Object.entries(allImages)
+        .filter(([path]) => path.includes(`/assets/images/${targetPath}/`))
+        .reduce((obj, [path, value]) => {
+            obj[path] = value;
+            return obj;
+        }, {} as typeof allImages);
+}
 
 export default function App() {
-
     const pages: AppPages = {
         thematical: [
+            {
+                link: "vandalism",
+                title: "Вандализм",
+                description: null,
+                content: () => {
+                    return (<ImagesContainer images={getImagesOfPath('Vandalism')}/>);
+                }
+            },
             {
                 link: "trains",
                 title: "Внимание: Железная дорога!",
                 description: "Будьте осторожны, переходя через железную дорогу",
                 content: () => {
-                    const images = import.meta.glob<string>(
-                        './assets/images/Trains/*.{png,jpg,jpeg,svg}',
-                        {eager: true, query: '?url', import: 'default'}
-                    );
-                    return (<ImagesContainer images={images}/>);
+                    return (<ImagesContainer images={getImagesOfPath('Trains')}/>);
                 }
             },
             {
@@ -228,7 +244,7 @@ export default function App() {
     };
 
     return (
-        <body>
+        <>
         <Header/>
         <main>
             <Sidebar pages={Array.from(pages.thematical)}/>
@@ -242,7 +258,7 @@ export default function App() {
         <footer>
             <p>&copy; МБОУ "Школа №41", г. Рязань</p>
         </footer>
-        </body>
+        </>
     );
 }
 
